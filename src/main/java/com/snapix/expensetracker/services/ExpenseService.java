@@ -9,7 +9,6 @@ import com.snapix.expensetracker.repository.ExpenseRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
@@ -33,5 +32,23 @@ public class ExpenseService {
     public ExpenseResponseDTO readById(Long id){
         Expense expense = expenseRepository.findById(id).orElseThrow(()->new ExpenseNotFound(id));
         return ExpenseMapper.toDto(expense);
+    }
+
+    public ExpenseResponseDTO updateById(Long id, ExpenseRequestDTO expense){
+        Expense updatedExpense = expenseRepository.findById(id).orElseThrow(()-> new ExpenseNotFound(id));
+
+        updatedExpense.setDescription(expense.getDescription());
+        updatedExpense.setDate(expense.getDate());
+        updatedExpense.setCategory(expense.getCategory());
+        updatedExpense.setAmount(expense.getAmount());
+
+        expenseRepository.save(updatedExpense);
+
+        return ExpenseMapper.toDto(updatedExpense);
+    }
+
+    public void deleteById(Long id){
+        Expense expense = expenseRepository.findById(id).orElseThrow(()-> new ExpenseNotFound(id));
+        expenseRepository.deleteById(id);
     }
 }
