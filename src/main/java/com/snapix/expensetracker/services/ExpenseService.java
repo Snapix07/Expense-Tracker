@@ -1,7 +1,7 @@
 package com.snapix.expensetracker.services;
 
-import com.snapix.expensetracker.dto.ExpenseRequestDTO;
-import com.snapix.expensetracker.dto.ExpenseResponseDTO;
+import com.snapix.expensetracker.dto.expense.ExpenseRequestDTO;
+import com.snapix.expensetracker.dto.expense.ExpenseResponseDTO;
 import com.snapix.expensetracker.entity.Expense;
 import com.snapix.expensetracker.exception.ExpenseNotFound;
 import com.snapix.expensetracker.mapper.ExpenseMapper;

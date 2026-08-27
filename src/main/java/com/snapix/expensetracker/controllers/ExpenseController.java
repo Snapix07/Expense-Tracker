@@ -1,10 +1,8 @@
 package com.snapix.expensetracker.controllers;
 
-import com.snapix.expensetracker.dto.ExpenseRequestDTO;
-import com.snapix.expensetracker.dto.ExpenseResponseDTO;
-import com.snapix.expensetracker.entity.Expense;
+import com.snapix.expensetracker.dto.expense.ExpenseRequestDTO;
+import com.snapix.expensetracker.dto.expense.ExpenseResponseDTO;
 import com.snapix.expensetracker.services.ExpenseService;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

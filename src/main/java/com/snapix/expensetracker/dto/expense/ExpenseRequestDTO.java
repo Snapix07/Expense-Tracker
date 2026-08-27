@@ -1,4 +1,4 @@
-package com.snapix.expensetracker.dto;
+package com.snapix.expensetracker.dto.expense;
 
 import jakarta.validation.constraints.*;
 import lombok.Data;
