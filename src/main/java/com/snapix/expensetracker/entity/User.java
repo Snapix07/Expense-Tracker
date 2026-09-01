@@ -2,11 +2,13 @@ package com.snapix.expensetracker.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.util.List;
 
 @Entity
 @Data
+@Accessors(chain = true)
 @Table(name = "users")
 public class User {
     @Id
