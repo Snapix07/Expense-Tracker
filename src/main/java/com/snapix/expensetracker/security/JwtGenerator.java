@@ -33,7 +33,7 @@ public class JwtGenerator {
 
     public String getUsernameJwt(String token) {
         Claims claims = Jwts.parser()
-                .setSigningKey(secret)
+                .setSigningKey(secret).build()
                 .parseClaimsJws(token)
                 .getBody();
         return claims.getSubject();
@@ -41,7 +41,7 @@ public class JwtGenerator {
 
     public boolean validate(String token){
         try {
-            Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
+            Jwts.parser().setSigningKey(secret).build().parseClaimsJws(token);
             return true;
         } catch (Exception e) {
             throw new AuthenticationCredentialsNotFoundException("Jwt is expired or not valid");
