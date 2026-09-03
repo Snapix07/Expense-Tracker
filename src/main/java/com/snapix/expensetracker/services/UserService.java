@@ -4,6 +4,7 @@ import com.snapix.expensetracker.dto.auth.AuthResponseDTO;
 import com.snapix.expensetracker.dto.user.UserRequestDTO;
 import com.snapix.expensetracker.dto.user.UserResponseDTO;
 import com.snapix.expensetracker.entity.User;
+import com.snapix.expensetracker.exception.UserExistException;
 import com.snapix.expensetracker.mapper.UserMapper;
 import com.snapix.expensetracker.repository.UserRepository;
 import com.snapix.expensetracker.security.JwtGenerator;
@@ -14,6 +15,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -32,6 +35,9 @@ public class UserService {
 
         public UserResponseDTO registerUser(UserRequestDTO userRequestDTO){
             User user = UserMapper.toEntity(userRequestDTO);
+            if(userRepository.findByUsername(user.getUsername()).isPresent()){
+                throw new UserExistException("That username exists");
+            }
             user.setPassword(encoder.encode(userRequestDTO.getPassword()));
             userRepository.save(user);
 
